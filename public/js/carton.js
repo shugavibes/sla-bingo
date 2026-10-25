@@ -8,6 +8,11 @@ const id = document.body.dataset.cardId;
 const url = `${location.origin}/c/${id}`;
 let card = null;
 
+// Solo quien creó el cartón (en este navegador) puede descargarlo y compartirlo; el resto solo lo ve.
+function isMine(cardId) {
+  try { return JSON.parse(localStorage.getItem('sla-bingo-mine') || '[]').includes(cardId); } catch { return false; }
+}
+
 const TWEET = (c) => `En mi #BingoSLA puse estos ${c.total} acontecimientos para noviembre`;
 
 function renderSide(c) {
@@ -56,10 +61,13 @@ async function ensureOgImage(c) {
 }
 
 async function main() {
-  if (new URLSearchParams(location.search).get('nuevo')) {
+  const isNew = !!new URLSearchParams(location.search).get('nuevo');
+  if (isNew) {
     $('#new-notice').hidden = false;
     history.replaceState(null, '', location.pathname);
   }
+  const mine = isNew || isMine(id);
+  $('#share').hidden = !mine;
   try {
     card = await api(`/api/cards/${encodeURIComponent(id)}`);
   } catch (e) {

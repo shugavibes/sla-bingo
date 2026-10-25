@@ -13,15 +13,15 @@ const EXAMPLE = {
   hits: 3, total: 8, lineCount: 1, line: true, bingo: false,
   lineCells: [0, 1, 2],
   grid: [
-    { text: 'OpenAI lanza un modelo GPT nuevo', hit: true },
-    { text: 'Bitcoin toca un nuevo máximo histórico', hit: true },
-    { text: 'Starship vuela y aterriza bien', hit: true },
-    { text: 'Apple anuncia novedades de Siri con IA', hit: false },
+    { text: 'Un invitado de SLA levanta una ronda', hit: true },
+    { text: 'Hay un super hackeo a un banco', hit: true },
+    { text: 'Una pelea en Twitter entre 2 founders', hit: true },
+    { text: 'Se anuncia un nuevo programa en SLA TV', hit: false },
     { free: true, text: 'SLA', hit: true },
-    { text: 'Nace un nuevo unicornio argentino', hit: false },
-    { text: 'GTA VI sale (de verdad) el 19 de noviembre', hit: false },
-    { text: 'Mercado Libre compra una startup de IA', hit: false, custom: true },
-    { text: 'ChatGPT se cae y es trending topic', hit: false },
+    { text: 'Sale una nueva copia de SLA', hit: false, custom: true },
+    { text: 'Anthropic y OpenAI lanzan modelos nuevos', hit: false },
+    { text: 'Anthropic y OpenAI piden regulaciones', hit: false },
+    { text: 'Un MEGA CEO es entrevistado en SLA', hit: false },
   ],
 };
 
