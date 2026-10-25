@@ -53,7 +53,7 @@ export const CONFIG = {
   maxCustom: 8,           // predicciones propias por cartón (puede llenar todo el cartón con las suyas)
   customMinLen: 6,
   customMaxLen: 80,
-  nickMinLen: 2,
+  nickMinLen: 4,
   nickMaxLen: 24,
   handleMaxLen: 30,
 

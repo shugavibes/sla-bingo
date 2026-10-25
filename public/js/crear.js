@@ -32,7 +32,7 @@ function initStep1() {
   nick.value = draft.nick; handle.value = draft.handle ? `@${draft.handle}` : ''; email.value = draft.email;
   $('#to-2').addEventListener('click', () => {
     const n = nick.value.replace(/\s+/g, ' ').trim();
-    if (n.length < state.rules.nickMinLen) { toast('Poné un nombre (mínimo 2 caracteres).', 'error'); nick.focus(); return; }
+    if (n.length < state.rules.nickMinLen) { toast(`Poné un nombre (mínimo ${state.rules.nickMinLen} letras).`, 'error'); nick.focus(); return; }
     const h = handle.value.trim().replace(/^@+/, '').replace(/[^A-Za-z0-9_.]/g, '');
     if (!h) { toast('Poné tu @ de X (Twitter).', 'error'); handle.focus(); return; }
     const e = email.value.trim().toLowerCase();
