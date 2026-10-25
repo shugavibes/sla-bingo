@@ -432,7 +432,7 @@ app.get('/admin', (req, res) => res.sendFile(path.join(PUBLIC_DIR, 'admin.html')
 // Diagnóstico (sin datos sensibles): cómo llega el request a la función y qué archivos ve.
 app.get('/api/debug', (req, res) => {
   const pick = {};
-  for (const [k, v] of Object.entries(req.headers)) if (/^(x-vercel|x-forwarded|host$|x-now)/.test(k)) pick[k] = v;
+  for (const [k, v] of Object.entries(req.headers)) if (/^(x-vercel|x-forwarded|host$)/.test(k) && !/token|auth|cookie/.test(k)) pick[k] = v;
   res.json({
     url: req.url, originalUrl: req.originalUrl, path: req.path, method: req.method,
     headers: pick,
