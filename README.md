@@ -49,6 +49,7 @@ npm run admin -- buscar gta         # busca por texto
 npm run admin -- paso p070          # marca "GTA VI sale el 19 de noviembre" → se tilda en todos los cartones
 npm run admin -- deshacer p070
 npm run admin -- add "Texto nuevo" "Categoría"
+npm run admin -- borrar nza972g     # borra un cartón (moderación: spam, trolls)
 npm run admin -- export             # backup JSON en data/
 ```
 
@@ -148,6 +149,7 @@ El `og.png` es la imagen genérica que aparece al compartir la home (1200×630).
 | POST | `/api/cards/:id/og` | subir la imagen de preview (PNG, header `x-hit-state`) |
 | GET | `/c/:id/og.png` | imagen de preview del cartón (o redirige al genérico) |
 | GET | `/api/admin/cards` | (admin) cartones con email, en orden de ranking |
+| DELETE | `/api/admin/cards/:id` | (admin) borrar un cartón (moderación) |
 | GET | `/api/admin/predictions` | (admin) todas las predicciones con conteo de cartones |
 | POST | `/api/admin/predictions/:id` | (admin) `{happened: true/false}` o `{text}` |
 | POST | `/api/admin/predictions` | (admin) agregar al pool |

@@ -28,8 +28,18 @@ function renderCards() {
       el('td', { 'data-keep-accents': '', style: { fontSize: '18px' }, text: c.email || '—' }),
       el('td', { class: 'num', text: `${c.hits}/${c.total}` }),
       el('td', { class: 'hide-sm px muted', text: fmtDateTime(c.createdAt) }),
+      el('td', {}, el('button', { class: 'btn quiet sm', text: 'Borrar', onClick: () => deleteCard(c) })),
     ));
   }
+}
+
+async function deleteCard(c) {
+  if (!confirm(`¿Borrar el cartón de ${c.nickname} (@${c.handle || '-'})?\n\nSe borra para siempre, con sus predicciones propias y su imagen.`)) return;
+  try {
+    await api(`/api/admin/cards/${encodeURIComponent(c.id)}`, { method: 'DELETE', headers: headers() });
+    toast('Cartón borrado.');
+    await load();
+  } catch (e) { toast(e.message, 'error'); }
 }
 
 function render() {

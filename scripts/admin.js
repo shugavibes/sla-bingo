@@ -84,6 +84,13 @@ async function cmd(args) {
       console.log(c.teal(`+ Agregada ${r.id}: ${r.text}`));
       return;
     }
+    case 'borrar': case 'delete': {
+      for (const id of rest) {
+        const r = await call('DELETE', `/api/admin/cards/${encodeURIComponent(id)}`);
+        console.log(c.orange(`✗ Borrado el cartón ${r.id} de ${r.nickname} (${r.removedPredictions} propias)`));
+      }
+      return;
+    }
     case 'export': {
       const data = await call('GET', '/api/admin/export');
       const out = path.join(ROOT, 'data', `db.backup-${new Date().toISOString().replace(/[:.]/g, '-')}.json`);
@@ -99,6 +106,7 @@ Comandos:
   paso <id> [id...]             marca que pasó → se tilda en todos los cartones
   deshacer <id> [id...]         la desmarca
   add "Texto" [Categoría]       agrega una predicción al pool
+  borrar <idCartón> [id...]     borra un cartón (moderación)
   export                        backup JSON en data/
   salir                         chau
 `);

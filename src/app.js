@@ -387,6 +387,14 @@ app.get('/api/admin/cards', adminAuth, (req, res) => {
   res.json(ranked.map(c => ({ ...c, email: db.getCard(c.id)?.email ?? null })));
 });
 
+app.delete('/api/admin/cards/:id', adminAuth, async (req, res, next) => {
+  try {
+    const r = await db.deleteCard(req.params.id);
+    if (!r) return res.status(404).json({ error: 'Cartón no encontrado.' });
+    res.json({ ok: true, ...r });
+  } catch (e) { next(e); }
+});
+
 app.get('/api/admin/export', adminAuth, (req, res) => {
   res.setHeader('Content-Disposition', `attachment; filename="sla-bingo-backup-${Date.now()}.json"`);
   res.json(db.snapshot());

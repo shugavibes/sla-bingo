@@ -52,6 +52,7 @@ function fileBackend(dbPath, kind = 'file') {
     async getCardRaw(id) { return state.cards.get(id) || null; },
     async putOg(id, buf) { fs.mkdirSync(ogDir, { recursive: true }); fs.writeFileSync(path.join(ogDir, `${id}.png`), buf); },
     async getOg(id) { try { return fs.readFileSync(path.join(ogDir, `${id}.png`)); } catch { return null; } },
+    async removeCard(id, predIds) { try { fs.unlinkSync(path.join(ogDir, `${id}.png`)); } catch { /* no había */ } persist(); },
     flush,
   };
 }
@@ -93,6 +94,11 @@ async function redisBackend(url, token) {
     async getCardRaw(id) { return parse(await r.get(K.card(id))); },
     async putOg(id, buf) { await r.set(K.og(id), buf.toString('base64')); },
     async getOg(id) { const v = await r.get(K.og(id)); return v ? Buffer.from(v, 'base64') : null; },
+    async removeCard(id, predIds) {
+      const pipe = r.pipeline().del(K.card(id)).srem(K.cards, id).del(K.og(id));
+      for (const pid of predIds) pipe.del(K.pred(pid)).srem(K.preds, pid);
+      await pipe.exec();
+    },
     flush() {},
   };
 }
@@ -256,6 +262,17 @@ export async function setOgState(cardId, ogState) {
   c.ogState = ogState;
   await backend.putCard(c);
   return c;
+}
+
+/** Borra un cartón, sus predicciones propias y su imagen de preview (moderación). */
+export async function deleteCard(cardId) {
+  const c = await findCard(cardId);
+  if (!c) return null;
+  const ownPreds = c.cells.filter(pid => state.predictions.get(pid)?.custom && state.predictions.get(pid)?.cardId === c.id);
+  state.cards.delete(c.id);
+  for (const pid of ownPreds) state.predictions.delete(pid);
+  await backend.removeCard(c.id, ownPreds);
+  return { id: c.id, nickname: c.nickname, removedPredictions: ownPreds.length };
 }
 
 export function cardsWithPrediction(predId) {

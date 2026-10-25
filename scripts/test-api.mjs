@@ -104,6 +104,14 @@ assert(up.status === 400, 'no-PNG rechazado');
 const admc = (await j('/api/admin/cards', { headers: { 'x-admin-token': TOKEN } })).data;
 assert(admc.find(c => c.id === id)?.email === 'nico@example.com', 'admin ve email normalizado');
 
+// 9e. borrar cartón (moderación): el segundo cartón
+const fid = feed.cards[0].id;
+const del = await j(`/api/admin/cards/${fid}`, { method: 'DELETE', headers: { 'x-admin-token': TOKEN } });
+assert(del.status === 200 && del.data.ok, 'admin borra cartón');
+assert((await j(`/api/cards/${fid}`)).status === 404, 'cartón borrado ya no existe');
+r = await j('/api/cards', { method: 'POST', body: { nickname: 'Fede', handle: 'fede', email: 'fede@example.com', picks: pool.slice(30, 38).map(p => p.id), custom: [] } });
+assert(r.status === 201, 'recreado para el resto de los tests');
+
 // 10. happened público (sin custom)
 const hap = (await j('/api/happened')).data;
 assert(hap.every(h => !h.id.startsWith('c_')) && hap.length === 5, `happened público sin propias: ${hap.length}`);
