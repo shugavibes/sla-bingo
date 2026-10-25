@@ -88,7 +88,7 @@ function togglePick(id) {
 }
 
 function renderChips() {
-  const cats = ['Todas', ...new Set(pool.map(p => p.category))];
+  const cats = ['Todas', ...[...new Set(pool.map(p => p.category))].sort((a, b) => (a === 'SLA' ? -1 : b === 'SLA' ? 1 : 0))];
   const box = $('#chips');
   box.innerHTML = '';
   for (const c of cats) {
