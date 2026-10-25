@@ -378,6 +378,13 @@ h1 .acid, h2 .acid { text-shadow: .08em .08em 0 var(--green-3); }
 .custom-item .x { margin-left: auto; background: none; border: 0; cursor: pointer; color: var(--muted); font-family: var(--px); font-size: 8px; text-transform: uppercase; }
 .custom-item .x:hover { color: var(--red); }
 
+/* Paso 2: las propias, protagónicas */
+.own { --pxc: var(--acid); background: var(--screen); padding: 22px 22px 18px; }
+.own .input { font-size: 26px; }
+.own .custom-list { margin-top: 14px; }
+.own .custom-item { font-size: 22px; padding: 10px 0; }
+.side .side-actions { margin-top: 24px; }
+
 /* ---------- Página del cartón ---------- */
 .card-page { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(300px, .85fr); gap: 48px; align-items: start; }
 @media (max-width: 900px) { .card-page { grid-template-columns: 1fr; gap: 32px; } }
@@ -477,4 +484,19 @@ canvas.hidden { position: absolute; left: -99999px; top: 0; }
   .banner { font-size: 14px; }
   .btn { font-size: 9px; padding: 12px 14px; }
   .pred .txt { font-size: 20px; }
+
+  /* Paso 2 en mobile: contador + botón fijos abajo, para no tener que scrollear toda la lista */
+  #side { position: fixed; top: auto; left: 0; right: 0; bottom: 0; z-index: 40; margin: 0; padding: 10px var(--gutter) 12px; background: var(--bg); border-top: var(--b) solid var(--green-2); box-shadow: none; display: flex; align-items: center; gap: 14px; }
+  #side .side-main { flex: 1; min-width: 0; }
+  #side .side-nick-row { display: none !important; }
+  #side .counter { font-size: 22px; margin: 0 0 6px; }
+  #side .hp { margin: 0; }
+  #side .hp i { height: 6px; }
+  #side #counter-hint { display: none; }
+  #side .side-actions { margin: 0; flex-wrap: nowrap; }
+  #side .side-actions .btn { font-size: 8px; padding: 11px 12px; }
+  #panel-2.active { padding-bottom: 96px; }
+  html { scroll-padding-bottom: 110px; }
+  .own { padding: 16px 14px 14px; }
+  .own .input { font-size: 22px; }
 }

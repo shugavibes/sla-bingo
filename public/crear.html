@@ -54,9 +54,23 @@
 
       <!-- PASO 2 -->
       <div class="panel" id="panel-2">
-        <h2 style="margin-bottom: 28px">Elegí <span class="acid">8</span></h2>
+        <h2 style="margin-bottom: 8px">¿Qué va a pasar en <span class="acid">noviembre</span>?</h2>
+        <p class="lead" style="margin-bottom: 24px">Escribí 8 cosas que creés que van a pasar en el mundo tech. Las que no se te ocurran, las completás con las del pool.</p>
         <div class="pick-layout">
           <div>
+            <!-- 1. Las propias: protagónico -->
+            <div class="own pxb">
+              <label class="label acid" for="custom-input" style="display:block; margin-bottom: 10px">Tus predicciones <span class="muted" id="custom-count">(0/8)</span></label>
+              <div class="inline">
+                <input class="input" type="text" id="custom-input" maxlength="80" placeholder="Ej: Nvidia compra una empresa argentina" autocomplete="off" enterkeyhint="done">
+                <button class="btn primary" id="custom-add">Agregar</button>
+              </div>
+              <div class="hint">Cualquier cosa que pueda pasar en noviembre. Si pasa, SLA la confirma.</div>
+              <div class="custom-list" id="custom-list"></div>
+            </div>
+
+            <!-- 2. El pool: secundario -->
+            <div class="label-row no-rule" style="padding: 32px 0 6px"><span>O completá con las del pool</span><span class="muted" id="pool-count"></span></div>
             <div class="toolbar">
               <input class="input sm" type="text" id="search" placeholder="Buscar…">
             </div>
@@ -64,23 +78,14 @@
             <div class="pred-list" id="pred-list"><div class="skeleton"></div></div>
           </div>
 
-          <aside class="sticky side pxb">
-            <span class="label muted" style="display:block">Tu cartón · <span id="side-nick"></span></span>
-            <div class="counter" id="counter">0<small>/8</small></div>
-            <div class="hp" id="hp"></div>
-            <div class="hint" id="counter-hint">Elegí 8 predicciones</div>
-
-            <div style="margin-top: 28px">
-              <label class="label muted" for="custom-input" style="display:block; margin-bottom: 6px">Tus propias predicciones <span id="custom-count">(0/3)</span></label>
-              <div class="inline">
-                <input class="input sm" type="text" id="custom-input" maxlength="80" placeholder="Ej: Nvidia compra una empresa argentina">
-                <button class="btn sm" id="custom-add">Agregar</button>
-              </div>
-              <div class="hint">Solo aparecen en tu cartón. Las confirma SLA si pasan.</div>
-              <div class="custom-list" id="custom-list"></div>
+          <aside class="sticky side pxb" id="side">
+            <div class="side-main">
+              <span class="label muted side-nick-row" style="display:block">Tu cartón · <span id="side-nick"></span></span>
+              <div class="counter" id="counter">0<small>/8</small></div>
+              <div class="hp" id="hp"></div>
+              <div class="hint" id="counter-hint">Elegí 8 predicciones</div>
             </div>
-
-            <div class="btn-row" style="margin-top: 28px">
+            <div class="btn-row side-actions">
               <button class="btn quiet sm" id="back-1">&lt; Volver</button>
               <button class="btn primary" id="to-3" disabled>Ver mi cartón &gt;</button>
             </div>

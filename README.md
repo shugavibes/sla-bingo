@@ -59,8 +59,8 @@ Las predicciones **propias** que escriben los usuarios aparecen en el admin con 
 
 ## Reglas del juego
 
-- Cierre de cartones: **5 de noviembre 23:59 (ART)**. Configurable en `.env` → `DEADLINE`. Después de eso `/crear` queda cerrado y solo se juega.
-- 8 predicciones por cartón: del pool (`data/predictions.seed.json`) y hasta 3 propias.
+- Cierre de cartones: **1 de noviembre 23:59 (ART)**. Configurable en `.env` → `DEADLINE`. Después de eso `/crear` queda cerrado y solo se juega.
+- 8 predicciones por cartón: propias (hasta 8, lo protagónico) y/o del pool (`data/predictions.seed.json`).
 - Centro libre (SLA). **Línea** = 3 en fila, columna o diagonal (el centro cuenta). **Bingo** = las 8 acertadas.
 - Ranking: aciertos → líneas → quién selló antes.
 - Rate limit: 5 cartones por hora por IP (`RATE_LIMIT_MAX`).
@@ -115,7 +115,7 @@ que se agrega desde el propio panel de Vercel. En local se sigue usando el archi
 4. **Variables**: en **Settings → Environment Variables** agregá:
    - `ADMIN_TOKEN` = algo largo y secreto (es la clave del panel `/admin`).
    - `SITE_URL` = tu dominio final, ej `https://bingo.slatv.live` (opcional: si no está, se deduce de cada request).
-   - `DEADLINE` solo si querés cambiar el cierre (`2026-11-05T23:59:59-03:00` por defecto).
+   - `DEADLINE` solo si querés cambiar el cierre (`2026-11-01T23:59:59-03:00` por defecto).
 5. **Redeploy** (Deployments → ⋯ → Redeploy) para que tome las variables. Listo.
 6. Dominio: **Settings → Domains** → agregá `bingo.slatv.live` (o el que quieras) y creá el CNAME que te indica.
 

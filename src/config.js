@@ -40,7 +40,7 @@ export const CONFIG = {
   redisUrl: process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL || '',
   redisToken: process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN || '',
   redisPrefix: process.env.REDIS_PREFIX || 'bingo',
-  deadline: process.env.DEADLINE || '2026-11-05T23:59:59-03:00',
+  deadline: process.env.DEADLINE || '2026-11-01T23:59:59-03:00',
   forceOpen: process.env.FORCE_OPEN === '1',
   dbPath: path.resolve(ROOT, process.env.DB_PATH || './data/db.json'),
   seedPath: path.join(ROOT, 'data', 'predictions.seed.json'),
@@ -50,7 +50,7 @@ export const CONFIG = {
   monthShort: 'NOV 2026',
   gridCells: 9,           // 3x3
   picksRequired: 8,       // 8 casilleros + el del medio libre (SLA)
-  maxCustom: 3,           // predicciones propias por cartón
+  maxCustom: 8,           // predicciones propias por cartón (puede llenar todo el cartón con las suyas)
   customMinLen: 6,
   customMaxLen: 80,
   nickMinLen: 2,

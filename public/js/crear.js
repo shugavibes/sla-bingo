@@ -68,7 +68,10 @@ function updateCounter() {
   else hint.textContent = `Te sobran ${n - req}, sacá alguna`;
   $('#to-3').disabled = n !== req;
   $('#custom-count').textContent = `(${draft.custom.length}/${state.rules.maxCustom})`;
-  $('#custom-add').disabled = draft.custom.length >= state.rules.maxCustom;
+  $('#custom-add').disabled = draft.custom.length >= state.rules.maxCustom || n >= req;
+  $('#custom-input').disabled = n >= req;
+  $('#custom-input').placeholder = n >= req ? 'Ya tenés 8. Sacá una para agregar otra.' : 'Ej: Nvidia compra una empresa argentina';
+  const pc = $('#pool-count'); if (pc) pc.textContent = `${pool.length} opciones`;
   renderList();
 }
 
