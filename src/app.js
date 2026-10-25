@@ -423,15 +423,37 @@ app.get('/c/:id', async (req, res, next) => {
   } catch (e) { next(e); }
 });
 
+app.get('/', (req, res) => res.sendFile(path.join(PUBLIC_DIR, 'index.html')));
+app.get('/index.html', (req, res) => res.redirect(301, '/'));
 app.get('/crear', (req, res) => res.sendFile(path.join(PUBLIC_DIR, 'crear.html')));
 app.get('/ranking', (req, res) => res.sendFile(path.join(PUBLIC_DIR, 'ranking.html')));
 app.get('/admin', (req, res) => res.sendFile(path.join(PUBLIC_DIR, 'admin.html')));
 
-app.use(express.static(PUBLIC_DIR, { extensions: ['html'], index: 'index.html' }));
+// Diagnóstico (sin datos sensibles): cómo llega el request a la función y qué archivos ve.
+app.get('/api/debug', (req, res) => {
+  const pick = {};
+  for (const [k, v] of Object.entries(req.headers)) if (/^(x-vercel|x-forwarded|host$|x-now)/.test(k)) pick[k] = v;
+  res.json({
+    url: req.url, originalUrl: req.originalUrl, path: req.path, method: req.method,
+    headers: pick,
+    cwd: process.cwd(), root: ROOT, publicDir: PUBLIC_DIR,
+    files: {
+      index: fs.existsSync(path.join(PUBLIC_DIR, 'index.html')),
+      carton: fs.existsSync(path.join(PUBLIC_DIR, 'carton.html')),
+      seed: fs.existsSync(CONFIG.seedPath),
+      css: fs.existsSync(path.join(PUBLIC_DIR, 'css', 'style.css')),
+    },
+    storage: db.storageKind(), node: process.version, vercel: !!process.env.VERCEL,
+  });
+});
+
+app.use(express.static(PUBLIC_DIR, { extensions: ['html'], index: false, redirect: false }));
 
 app.use((req, res) => {
   if (req.path.startsWith('/api/')) return res.status(404).json({ error: 'No existe.' });
-  res.status(404).sendFile(path.join(PUBLIC_DIR, '404.html'));
+  res.status(404).sendFile(path.join(PUBLIC_DIR, '404.html'), err => {
+    if (err && !res.headersSent) res.status(404).type('html').send('<!doctype html><title>404</title><p style="font-family:monospace;padding:40px">404 — no existe.</p>');
+  });
 });
 
 // Errores no manejados → JSON (o texto) sin tirar el proceso.
