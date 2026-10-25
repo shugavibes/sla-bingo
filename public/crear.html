@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Armá tu cartón — SLA Bingo Tech</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header class="top">
+    <a class="logo" href="/" aria-label="SLA"><img src="/sla-logo.svg" alt="SLA"></a>
+    <nav class="nav">
+      <a href="/ranking">Ranking</a>
+      <a href="/crear" class="cta">Armá tu cartón</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="wizard" id="wizard">
+      <span class="ws active" data-step="1">Nivel 1 · Quién sos</span>
+      <span class="ws" data-step="2">Nivel 2 · Elegí 8</span>
+      <span class="ws" data-step="3">Nivel 3 · Sellar</span>
+    </div>
+
+    <section class="section">
+      <div class="notice error pxb" id="closed" hidden>
+        <b>Se cerró el plazo.</b> Ya no se pueden crear cartones nuevos. <a href="/ranking">Mirá el ranking</a>.
+      </div>
+
+      <!-- PASO 1 -->
+      <div class="panel active" id="panel-1">
+        <h2 style="margin-bottom: 36px">Player 1: <span class="acid">quién sos</span></h2>
+        <div style="max-width: 520px">
+          <div class="field">
+            <label for="nick">Nombre o apodo</label>
+            <input class="input" type="text" id="nick" maxlength="24" placeholder="Como querés aparecer en el cartón" autocomplete="nickname">
+            <div class="hint">Entre 2 y 24 caracteres</div>
+          </div>
+          <div class="field">
+            <label for="handle">Tu @ de X (Twitter)</label>
+            <input class="input" type="text" id="handle" maxlength="30" placeholder="@tuusuario" autocomplete="username">
+            <div class="hint">Se muestra en el cartón, al lado de tu nombre</div>
+          </div>
+          <div class="field">
+            <label for="email">Tu email</label>
+            <input class="input" type="email" id="email" maxlength="120" placeholder="vos@ejemplo.com" autocomplete="email">
+            <div class="hint">No se muestra en ningún lado. Es solo para contactarte si ganás</div>
+          </div>
+          <button class="btn primary" id="to-2">Siguiente &gt;</button>
+        </div>
+      </div>
+
+      <!-- PASO 2 -->
+      <div class="panel" id="panel-2">
+        <h2 style="margin-bottom: 28px">Elegí <span class="acid">8</span></h2>
+        <div class="pick-layout">
+          <div>
+            <div class="toolbar">
+              <input class="input sm" type="text" id="search" placeholder="Buscar…">
+            </div>
+            <div class="chips" id="chips"></div>
+            <div class="pred-list" id="pred-list"><div class="skeleton"></div></div>
+          </div>
+
+          <aside class="sticky side pxb">
+            <span class="label muted" style="display:block">Tu cartón · <span id="side-nick"></span></span>
+            <div class="counter" id="counter">0<small>/8</small></div>
+            <div class="hp" id="hp"></div>
+            <div class="hint" id="counter-hint">Elegí 8 predicciones</div>
+
+            <div style="margin-top: 28px">
+              <label class="label muted" for="custom-input" style="display:block; margin-bottom: 6px">Tus propias predicciones <span id="custom-count">(0/3)</span></label>
+              <div class="inline">
+                <input class="input sm" type="text" id="custom-input" maxlength="80" placeholder="Ej: Nvidia compra una empresa argentina">
+                <button class="btn sm" id="custom-add">Agregar</button>
+              </div>
+              <div class="hint">Solo aparecen en tu cartón. Las confirma SLA si pasan.</div>
+              <div class="custom-list" id="custom-list"></div>
+            </div>
+
+            <div class="btn-row" style="margin-top: 28px">
+              <button class="btn quiet sm" id="back-1">&lt; Volver</button>
+              <button class="btn primary" id="to-3" disabled>Ver mi cartón &gt;</button>
+            </div>
+          </aside>
+        </div>
+      </div>
+
+      <!-- PASO 3 -->
+      <div class="panel" id="panel-3">
+        <h2 style="margin-bottom: 28px">Sellar</h2>
+        <div class="card-page">
+          <div>
+            <div id="preview-console"></div>
+            <div class="btn-row" style="margin-top: 20px">
+              <button class="btn quiet sm" id="shuffle">Mezclar casilleros</button>
+            </div>
+          </div>
+          <div class="side-col">
+            <div class="notice muted pxb">
+              <b><span class="ico lock"></span> Último nivel.</b> Una vez sellado, el cartón <b>no se puede editar ni borrar</b>. Queda con un link único para que lo compartas.
+            </div>
+            <label class="inline" style="cursor:pointer; align-items:flex-start; gap:12px; font-size: 15px">
+              <input type="checkbox" id="agree" style="width:18px;height:18px;margin-top:3px;accent-color:#39f688">
+              <span>Entiendo que el cartón queda sellado y no se puede modificar.</span>
+            </label>
+            <div class="btn-row">
+              <button class="btn quiet sm" id="back-2">&lt; Cambiar</button>
+              <button class="btn primary" id="create" disabled>Sellar mi cartón &gt;</button>
+            </div>
+            <div class="notice error pxb" id="create-error" hidden></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <span>Un juego de <a href="https://slatv.live" target="_blank" rel="noopener">SLA — Siguiendo los acontecimientos</a></span>
+  </footer>
+
+  <script type="module" src="/js/crear.js"></script>
+</body>
+</html>

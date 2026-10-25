@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{TITLE}}</title>
+  <meta name="description" content="{{DESC}}">
+  <meta property="og:title" content="{{TITLE}}">
+  <meta property="og:description" content="{{DESC}}">
+  <meta property="og:image" content="{{OG_IMAGE}}">
+  <meta property="og:url" content="{{URL}}">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{TITLE}}">
+  <meta name="twitter:description" content="{{DESC}}">
+  <meta name="twitter:image" content="{{OG_IMAGE}}">
+  <link rel="canonical" href="{{URL}}">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body data-card-id="{{CARD_ID}}">
+  <header class="top">
+    <a class="logo" href="/" aria-label="SLA"><img src="/sla-logo.svg" alt="SLA"></a>
+    <nav class="nav">
+      <a href="/ranking">Ranking</a>
+      <a href="/crear" class="cta">Armá tu cartón</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="label-row">
+      <span><i class="dot"></i>Bingo tech / Noviembre 2026</span>
+      <span id="label-right"></span>
+    </div>
+
+    <section class="section">
+      <div class="notice pxb" id="new-notice" hidden>
+        <b><span class="ico lock"></span> Cartón sellado.</b> Guardá este link: es la única referencia. Descargá la imagen y compartila donde quieras.
+      </div>
+      <div class="notice error pxb" id="not-found" hidden>
+        <b>Este cartón no existe.</b> Revisá el link o <a href="/crear">armá el tuyo</a>.
+      </div>
+
+      <div class="card-page" id="card-page" hidden>
+        <div>
+          <div class="card-head">
+            <h2 id="title">…</h2>
+          </div>
+          <div class="px muted" id="subtitle" style="margin-bottom: 18px"></div>
+          <div id="console"></div>
+          <div class="legend">
+            <span><i class="hit"></i>Ya pasó</span>
+            <span><i class="line"></i>Línea</span>
+            <span><i class="custom"></i>Propia</span>
+          </div>
+        </div>
+
+        <div class="side-col">
+          <div class="banner pxb" id="banner" hidden></div>
+          <div class="result pxb">
+            <span class="label">Resultado</span>
+            <div class="big"><span id="hits">0</span><small>/8 acertadas</small></div>
+            <div class="row">
+              <span><b id="lines">0</b> líneas</span>
+              <span>Puesto <b id="position">–</b> de <b id="total-cards">–</b></span>
+            </div>
+          </div>
+
+          <div class="share pxb">
+            <span class="label">Compartir</span>
+            <div class="btn-row">
+              <button class="btn primary sm" id="download">Descargar imagen</button>
+              <button class="btn sm" id="share-x">Compartir en X</button>
+              <button class="btn quiet sm" id="copy">Copiar link</button>
+            </div>
+            <p class="tip">El tweet sale con el texto "En mi #BingoSLA puse estos 8 acontecimientos para noviembre", el link y la preview de tu cartón. Para Instagram: descargá la imagen (1080×1080) y subila a stories o feed.</p>
+          </div>
+
+          <div class="happened">
+            <span class="label">Lo que ya pasó en este cartón</span>
+            <div class="hlist" id="happened"></div>
+            <p class="hint" id="happened-empty">Todavía nada. Noviembre recién empieza (o ni empezó).</p>
+          </div>
+
+          <div class="btn-row">
+            <a class="btn quiet sm" href="/crear">Armar otro cartón</a>
+            <a class="btn quiet sm" href="/ranking">Ver ranking</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <span>Un juego de <a href="https://slatv.live" target="_blank" rel="noopener">SLA — Siguiendo los acontecimientos</a></span>
+    <span id="created-at"></span>
+  </footer>
+
+  <canvas id="export-canvas" class="hidden" width="1080" height="1080"></canvas>
+  <script type="module" src="/js/carton.js"></script>
+</body>
+</html>

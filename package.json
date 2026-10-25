@@ -1,0 +1,26 @@
+{
+  "name": "sla-bingo",
+  "version": "1.0.0",
+  "description": "SLA Bingo Tech — cartón de bingo con predicciones de lo que va a pasar en el mundo tech durante noviembre.",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "admin": "node scripts/admin.js",
+    "seed:dummy": "node scripts/seed-dummy.js",
+    "test": "node scripts/test-api.mjs"
+  },
+  "engines": {
+    "node": "22.x"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "@upstash/redis": "^1.39.0"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shugavibes/sla-bingo.git"
+  }
+}

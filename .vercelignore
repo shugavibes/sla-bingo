@@ -1,0 +1,5 @@
+data/db.json
+data/db.json.tmp
+data/og/
+data/db.backup-*.json
+.env

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bingo de Acontecimientos — SLA</title>
+  <meta name="description" content="Elegí 8 cosas que van a pasar en el mundo tech en noviembre, a ver si ganás el bingo.">
+  <meta property="og:title" content="Bingo de Acontecimientos — SLA">
+  <meta property="og:description" content="Elegí 8 cosas que van a pasar en el mundo tech en noviembre, a ver si ganás el bingo.">
+  <meta property="og:image" content="/og.png">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header class="top">
+    <a class="logo" href="/" aria-label="SLA"><img src="/sla-logo.svg" alt="SLA"></a>
+    <nav class="nav">
+      <a href="/ranking">Ranking</a>
+      <a href="/crear" class="cta" id="nav-cta">Armá tu cartón</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="label-row">
+      <span><i class="dot"></i>#BingoSLA / Noviembre 2026</span>
+      <span id="label-right">Cierre 05.11 — 23:59 ART</span>
+    </div>
+
+    <section class="hero">
+      <div class="hero-grid">
+        <div>
+          <h1>Bingo de <span class="acid">Acontecimientos</span></h1>
+          <p class="lead">Elegí 8 cosas que van a pasar en el mundo tech en noviembre, a ver si ganás el bingo.</p>
+          <div class="btn-row">
+            <a class="btn primary" href="/crear" id="hero-cta">Armar mi cartón &gt;</a>
+            <a class="btn quiet" href="/ranking">Ver ranking</a>
+          </div>
+          <a class="press-start cur" href="/crear" id="press-start">Press start</a>
+        </div>
+        <div>
+          <div class="label-row no-rule" style="padding: 0 0 10px"><span>Cartón de ejemplo</span><span class="muted">Así se ve uno con línea</span></div>
+          <div id="example"></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="stats" id="stats">
+      <div class="stat"><div class="num" id="st-cards">–</div><div class="lbl">Cartones</div></div>
+      <div class="stat"><div class="num acid" id="st-happened">–</div><div class="lbl">Cosas que ya pasaron</div></div>
+      <div class="stat"><div class="num" id="st-bingos">–</div><div class="lbl">Bingos</div></div>
+      <div class="stat"><div class="num cd" id="st-countdown">–</div><div class="lbl" id="st-countdown-lbl">Cierra en</div></div>
+    </div>
+
+    <div class="label-row no-rule"><span>01 / Cómo se juega</span><span>3 niveles</span></div>
+    <section class="section" style="padding-top: 8px">
+      <div class="steps">
+        <div class="step pxb"><div class="n">Nivel 1</div><h3>Armá tu cartón</h3><p>Elegí 8 predicciones del pool o inventá hasta 3 propias. Tenés tiempo hasta el 5 de noviembre.</p></div>
+        <div class="step pxb"><div class="n">Nivel 2</div><h3>Queda sellado</h3><p>Nadie lo puede editar. Ni vos. Descargalo y compartilo en X o Instagram: el link siempre apunta acá.</p></div>
+        <div class="step pxb"><div class="n">Nivel 3</div><h3>Se marca solo</h3><p>Cuando algo pasa, lo confirmamos desde SLA y se tilda en todos los cartones que lo tengan. Tres en línea es línea. Los 8 es bingo.</p></div>
+      </div>
+    </section>
+
+    <div class="label-row"><span>02 / Los cartones</span><span id="feed-count"></span></div>
+    <section class="section" style="padding-top: 16px">
+      <div class="feed" id="feed"></div>
+      <p class="px muted" id="feed-empty" hidden style="margin-top: 16px">Todavía no hay cartones. ¿Vas a ser el primero? <span class="cur"></span></p>
+      <div class="btn-row" style="margin-top: 28px; justify-content: center">
+        <button class="btn quiet" id="feed-more" hidden>Cargar más</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <span>Un juego de <a href="https://slatv.live" target="_blank" rel="noopener">SLA — Siguiendo los acontecimientos</a></span>
+    <span>Los cartones son inmutables · Insert coin</span>
+  </footer>
+
+  <script type="module" src="/js/home.js"></script>
+</body>
+</html>

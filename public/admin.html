@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin — SLA Bingo Tech</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header class="top">
+    <a class="logo" href="/" aria-label="SLA"><img src="/sla-logo.svg" alt="SLA"></a>
+    <nav class="nav">
+      <a href="/">Sitio</a>
+      <a href="/ranking">Ranking</a>
+      <a href="/admin" class="cta">Admin</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="label-row">
+      <span><i class="dot"></i>Admin / Qué pasó</span>
+      <span id="summary"></span>
+    </div>
+
+    <section class="section">
+      <div id="login">
+        <h2 style="margin-bottom: 28px">Admin</h2>
+        <div style="max-width: 520px">
+          <div class="field">
+            <label for="token">Token de admin (el <span class="kbd">ADMIN_TOKEN</span> del <span class="kbd">.env</span>)</label>
+            <input class="input" type="password" id="token" placeholder="Token" autocomplete="current-password">
+          </div>
+          <button class="btn primary" id="login-btn">Entrar &gt;</button>
+          <div class="notice error pxb" id="login-error" hidden></div>
+        </div>
+      </div>
+
+      <div id="panel" hidden>
+        <div class="section-head">
+          <h2>Qué pasó</h2>
+          <div class="btn-row">
+            <button class="btn quiet sm" id="export">Exportar backup</button>
+            <button class="btn quiet sm" id="logout">Salir</button>
+          </div>
+        </div>
+        <p class="hint" style="margin: -12px 0 24px">Tocá <b>Pasó</b> cuando algo se cumpla: se marca al instante en todos los cartones que lo tengan. Se puede deshacer.</p>
+
+        <div class="notice muted pxb">
+          <b>Agregar predicción al pool</b> — solo tiene sentido antes del cierre; los cartones ya sellados no cambian.
+          <div class="inline" style="margin-top: 10px">
+            <input class="input sm" type="text" id="new-text" placeholder="Texto de la predicción" maxlength="200">
+            <input class="input sm" type="text" id="new-cat" placeholder="Categoría" maxlength="40" style="max-width: 180px">
+            <button class="btn sm" id="new-add">Agregar</button>
+          </div>
+        </div>
+
+        <div class="toolbar" style="margin-top: 24px">
+          <input class="input sm" type="text" id="filter" placeholder="Filtrar…">
+        </div>
+        <div class="chips">
+          <button class="chip active" data-f="all">Todas</button>
+          <button class="chip" data-f="pool">Pool</button>
+          <button class="chip" data-f="custom">Propias de usuarios</button>
+          <button class="chip" data-f="happened">Ya pasaron</button>
+        </div>
+        <div class="admin-list" id="list"></div>
+
+        <div class="section-head" style="margin-top: 48px">
+          <h2>Cartones</h2>
+          <button class="btn quiet sm" id="copy-emails">Copiar emails</button>
+        </div>
+        <p class="hint" style="margin: -12px 0 16px">Ordenados como el ranking. El email no se muestra en ningún otro lado.</p>
+        <table class="rank" id="cards-table">
+          <thead><tr><th>Rank</th><th>Player</th><th>Email</th><th>Aciertos</th><th class="hide-sm">Sellado</th></tr></thead>
+          <tbody id="cards-rows"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot"><span>SLA Bingo Tech — panel de administración</span></footer>
+  <script type="module" src="/js/admin.js"></script>
+</body>
+</html>

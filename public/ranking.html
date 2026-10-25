@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ranking — SLA Bingo Tech</title>
+  <meta name="description" content="Quién va ganando el SLA Bingo Tech de noviembre.">
+  <meta property="og:title" content="Ranking — SLA Bingo Tech">
+  <meta property="og:image" content="/og.png">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header class="top">
+    <a class="logo" href="/" aria-label="SLA"><img src="/sla-logo.svg" alt="SLA"></a>
+    <nav class="nav">
+      <a href="/ranking">Ranking</a>
+      <a href="/crear" class="cta">Armá tu cartón</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="label-row">
+      <span><i class="dot"></i>Bingo tech / Noviembre 2026</span>
+      <span id="summary">Cargando…</span>
+    </div>
+
+    <section class="section">
+      <div class="section-head">
+        <h2><span class="ico trophy acid"></span> Hi-score</h2>
+        <input class="input sm" type="text" id="search" placeholder="Buscar por nombre…" style="max-width: 260px">
+      </div>
+      <p class="hint" style="margin: -12px 0 24px">Más aciertos primero · después más líneas · a igualdad, quien selló antes</p>
+
+      <table class="rank">
+        <thead>
+          <tr><th>Rank</th><th>Player</th><th>Aciertos</th><th>Líneas</th><th class="hide-sm">Sellado</th></tr>
+        </thead>
+        <tbody id="rows"><tr><td colspan="5" class="px muted">Cargando…</td></tr></tbody>
+      </table>
+      <p class="px muted" id="empty" hidden>Todavía no hay cartones. <a href="/crear">Armá el primero</a>.</p>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <span>Un juego de <a href="https://slatv.live" target="_blank" rel="noopener">SLA — Siguiendo los acontecimientos</a></span>
+  </footer>
+
+  <script type="module" src="/js/ranking.js"></script>
+</body>
+</html>
